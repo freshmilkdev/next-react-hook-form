@@ -21,7 +21,56 @@ export default function Form() {
                 error={errors.floatingEmail}
                 name={"floatingEmail"}
                 label={'Email address'}
-                type={'email'}/>
+                type={'email'}
+            />
+            <FormInput
+                register={register}
+                rules={{
+                    required: "Required field",
+                    minLength: {
+                        value: 5,
+                        message: "Password length should be at least 4 characters"
+                    }
+                }}
+                error={errors.password}
+                name={"password"}
+                label={'Password'}
+                type={'password'}/>
+            <FormInput
+                register={register}
+                rules={{
+                    required: "Required field",
+                    minLength: {
+                        value: 5,
+                        message: "Password length should be at least 5 characters"
+                    },
+                    validate: (val: string) => {
+                        if (watch('password') != val) {
+                            return "Your passwords do no match";
+                        }
+                    },
+                }}
+                error={errors.confirmPassword}
+                name={"confirmPassword"}
+                label={'Confirm Password'}
+                type={'password'}/>
+
+            <div className="grid md:grid-cols-2 md:gap-6">
+                <FormInput
+                    register={register}
+                    rules={{required: 'Required field'}}
+                    error={errors.firstName}
+                    name={"firstName"}
+                    label={'First name'}
+                />
+                <FormInput
+                    register={register}
+                    rules={{required: 'Required field'}}
+                    error={errors.firstName}
+                    name={"lastName"}
+                    label={'Last name'}
+                />
+            </div>
 
 
             <button type="submit"
