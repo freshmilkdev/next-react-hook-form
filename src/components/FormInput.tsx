@@ -5,13 +5,13 @@ export declare interface IFormInput {
     name: string
     label: string
     type?: string
-    register: UseFormRegister<FieldValues>
+    register:UseFormRegister<FieldValues>
     rules?: RegisterOptions
     error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined
 }
 
 export default function FormInput(props: IFormInput) {
-    const {name, label, type = 'text', register, rules, error} = props;
+    const {name, label, type = 'text', register, rules = {}, error} = props;
 
     return (
         <div className="relative z-0 w-full mb-6 group">
